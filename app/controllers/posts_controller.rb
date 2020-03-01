@@ -13,8 +13,9 @@ class PostsController < ApplicationController
   end
   
   def create
-   @post = Post.create(create_params)
-   @posts = Post.all
+   @post = Post.new(content: params[:content], name: params[:name])
+   @post.save
+   redirect_to("/posts/index")
   end
   
   def destroy
@@ -24,6 +25,6 @@ class PostsController < ApplicationController
   
   private
   def create_params
-  params.require(:post).permit(:content, :name)
+  params.require(:post).permit(:content)
   end
 end

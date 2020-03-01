@@ -6,19 +6,22 @@
    <ul>
   <% @post = Post.new unless @post %>
   <li>
-  <%= form_for @post, remote: true do |f| %>
-  <%= f.text_field :content %>
-    <%= f.text_field :name %>
-    <%= f.submit "投稿" %>
+  <%= form_for @post, url: posts_create_path, method: :post, html: { class: "form" }, remote: true do |f| %>
+  <%= f.text_field :content, html: { class: "form-body" } %>
+    <%= f.text_field :name,html: { class: "form-body" } %>
+    <%= f.submit "投稿", html: { type: "submit" } %>
   </li>
   </ul>
   <% end %>
-    
-      <div class="posts-index-item">
+   <br>
+   <br>
+   <div class="container">
       <% @posts.each do |post| %>
+      <div class="posts-index-item">
         <%= link_to post.content, post_path(post.id), method: :get %>
         <h6>投稿者：<%= post.name %></h6>
-      <% end %>
       </div>
+      <% end %>
+    </div>
   </div>
 
