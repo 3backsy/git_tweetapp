@@ -1,10 +1,24 @@
 <div class="main posts-index">
-  <div class="container">
-    <% @posts.each do |post| %>
+  
+    
+
+ <div class="container">
+   <ul>
+  <% @post = Post.new unless @post %>
+  <li>
+  <%= form_for @post, remote: true do |f| %>
+  <%= f.text_field :content %>
+    <%= f.text_field :name %>
+    <%= f.submit "投稿" %>
+  </li>
+  </ul>
+  <% end %>
+    
       <div class="posts-index-item">
-        <%= post.content %>
-        <%= link_to "詳細", post_path(post.id), method: :get %>
+      <% @posts.each do |post| %>
+        <%= link_to post.content, post_path(post.id), method: :get %>
+        <h6>投稿者：<%= post.name %></h6>
+      <% end %>
       </div>
-    <% end %>
   </div>
-</div>
+
