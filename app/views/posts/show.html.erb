@@ -1,8 +1,9 @@
 <div class="main posts-index">
   <div class="container">
       <div class="posts-index-item">
-        <%= @post.content %><br>
-      <h6>投稿者：<%= @post.name %></h6>
+        <h3><%= @post.content %></h3><br>
+      <h5>投稿者：<%= @post.name %><br> 投稿日時：<%= @post.created_at %></h5>
+      
       </div>
   </div>
 </div>

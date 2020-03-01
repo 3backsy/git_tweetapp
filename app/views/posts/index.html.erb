@@ -6,20 +6,22 @@
    <ul>
   <% @post = Post.new unless @post %>
   <li>
-  <%= form_for @post, url: posts_create_path, method: :post, html: { class: "form" }, remote: true do |f| %>
-  <%= f.text_field :content, html: { class: "form-body" } %>
-    <%= f.text_field :name,html: { class: "form-body" } %>
-    <%= f.submit "投稿", html: { type: "submit" } %>
+  <%= form_tag("/posts/create") do %>
+  <div class="form">
+    <div class="form-body">
+      <textarea class="posts-new textarea" name="content" placeholder="投稿内容"></textarea>
+      <input type="text" name="name" placeholder="ニックネーム">
+      <input type="submit" value="投稿">
+    </div>
+  </div>
+  <% end %>
   </li>
   </ul>
-  <% end %>
-   <br>
-   <br>
    <div class="container">
       <% @posts.each do |post| %>
       <div class="posts-index-item">
-        <%= link_to post.content, post_path(post.id), method: :get %>
-        <h6>投稿者：<%= post.name %></h6>
+        <h2><%= link_to post.content, post_path(post.id), method: :get %></h2>
+        <h5>投稿者：<%= post.name %><br><span>投稿時間：<%= time_ago_in_words(post.created_at) if post.created_at  %>前</span></h5>
       </div>
       <% end %>
     </div>
