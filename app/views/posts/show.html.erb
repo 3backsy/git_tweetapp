@@ -2,7 +2,12 @@
   <div class="container">
       <div class="posts-index-item">
         <h3><%= @post.content %></h3><br>
-      <h5>投稿者：<%= @post.name %><br> 投稿日時：<%= @post.created_at %></h5>
+      <h5>投稿者：<%= @post.name %></h5>
+      <div class="post-time"><h5>投稿日時：<%= @post.created_at %></h5></div>
+      <div class="post-menus">
+        <%= link_to("編集", "/posts/#{@post.id}/edit") %>
+        <%= link_to("削除", "/posts/#{@post.id}/delete") %>
+      </div>
       
       </div>
   </div>
