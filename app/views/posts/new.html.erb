@@ -3,7 +3,10 @@
     <h1 class="form-heading">投稿する</h1>            
       <%= form_tag("/posts/create") do %>            
       <div class="form">            
-         <div class="form-body">            
+         <div class="form-body">
+          <div class="form-error">
+            <%= flash[:notice] %>
+          </div>
          <textarea class="posts-new textarea" name="content"></textarea>
          <input type="text" name="name">
            <input type="submit" value="投稿">            

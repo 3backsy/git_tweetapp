@@ -14,8 +14,16 @@ class PostsController < ApplicationController
   
   def create
    @post = Post.new(content: params[:content], name: params[:name])
-   @post.save
-   redirect_to("/posts/index")
+   if @post.save
+       flash[:notice] = "投稿を作成しました"
+       redirect_to("/posts/index")
+   else
+       flash[:notice] = "contentは140文字以内です。"
+       render("posts/new")
+       
+       
+   end
+   
   end
   
   def destroy
